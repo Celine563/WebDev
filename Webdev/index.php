@@ -10,12 +10,23 @@
 <body>
 <h1>Simple Database App</h1>
 <?php include "templates/header.php"; ?>
+Page 17 of 19
+5 Deleting entries from a database
+Back in index.php, let's add an entry for delete. We could put this in the update file, but for the
+sake of continuity and finishing the acronym, let's just make it into a new file.
+public/index.php
 <ul>
 <li>
 <a href="create.php"><strong>Create</strong></a> - add a user
 </li>
 <li>
 <a href="read.php"><strong>Read</strong></a> - find a user
+</li>
+<li>
+<a href="update.php"><strong>Update</strong></a> - edit a user
+</li>
+<li>
+<a href="delete.php"><strong>Delete</strong></a> - delete a user
 </li>
 </ul>
 <?php include "templates/footer.php"; ?>

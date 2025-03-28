@@ -1,22 +1,24 @@
 <?php
-/**
-* Configuration for database connection
-*
-*/
 $host = "localhost";
 $username = "root";
 $password = "";
-$dbname = "test"; // will use later
-$dsn = "mysql:host=$host;dbname=$dbname"; // will use later
+$dbname = "test";
+$dsn = "mysql:host=$host;dbname=$dbname";
 $options = array(
-PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 );
 
-require "config.php";
-$connection = new PDO("mysql:host=$host", $username, $password, $options);
+try {
+    // Create a new PDO instance and connect to the database
+    $connection = new PDO($dsn, $username, $password, $options);
+    
+    // Execute the SQL file for DB setup
+    $sql = file_get_contents("data/init.sql");
+    $connection->exec($sql);
 
-require "config.php";
-$connection = new PDO("mysql:host=$host", $username, $password, $options);
-$sql = file_get_contents("data/init.sql");
-$connection->exec($sql);
-Echo “DB setup”;
+    // Output success message
+    echo "DB setup";
+} catch (PDOException $error) {
+    echo "Error: " . $error->getMessage();
+}
+?>
